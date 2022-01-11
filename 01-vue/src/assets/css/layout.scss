@@ -1,0 +1,44 @@
+@import './vars.scss';
+#app{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+$navgation-width : 160px;
+$gap: 20px;
+$footer-height: 50px;
+
+.sider-bar{
+  width: $sidebar-width;
+  position: fixed;
+  margin-top: $header-height;
+  height: calc(100% - $header-height);
+  overflow-y: auto;
+  padding: 10px ;
+  background-color: #fff;
+}
+.header-bar{
+  height: $header-height;
+  line-height: $header-height;
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid $sidebar-color;
+}
+.view-content{
+  margin-top: $header-height + $gap;
+  margin-left: $sidebar-width + $gap;
+  height: calc(100% - $header-height  - $gap);
+  width: calc(100% - $sidebar-width - $gap);
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #fff;
+ .main {
+  display: flex;
+  height: calc(100vh - 54px);
+  overflow: auto;
+ }
+}
+

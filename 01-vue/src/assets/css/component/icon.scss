@@ -1,0 +1,29 @@
+.y-icon{
+  color: #c0c4cc;
+  font-size: 14px;
+  transition: transform .3s;
+  transform-origin: center center;
+  cursor: pointer;
+  display: inline-block;
+  width: 20px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  transition: all .3s;
+  &:after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+$icons: ( up-arrow, down-arrow, clear);
+@each $icon in $icons {
+  .y-icon-#{$icon}{
+    &:after{
+      background: url('~@/assets/icon/#{$icon}.png') no-repeat center/contain;
+    }
+  }
+}
