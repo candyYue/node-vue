@@ -1,20 +1,27 @@
 <template>
-  <input type="text" v-model="time" placeholder="请输入时间" class="y-input">
-  <input type="text" v-model="date" placeholder="请输入日期" class="y-input">
-  <input type="text" v-model="location" placeholder="请输入地址" class="y-input">
-
-  <input type="file" accept="image/*" class="y-input" id="upload" @change='imgChange'>
-  <button @click="run" class="y-button"> 生成水印 </button>
-  <div class="watermask"></div>
+  <div class="water-mask">
+    <div class="water-mask-input">
+      请输入水印时间：<input type="text" v-model="time" placeholder="请输入时间" class="y-input">
+    </div>
+    <div>
+      请输入水印日期：<input type="text" v-model="date" placeholder="请输入日期" class="y-input">
+    </div>
+    <div>
+      请输入水印地址：<input type="text" v-model="location" placeholder="请输入地址" class="y-input">
+    </div>
+    <input type="file" accept="image/*" class="y-input" id="upload" @change='imgChange'>
+    <button @click="run" class="y-button"> 点击生成水印 </button>
+    <div class="watermask"></div>
+  </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "@vue/runtime-core";
 import {useStore} from 'vuex';
-
-const time = ref('')
-const date = ref('')
-const location = ref('')
+import { getTime, getDate} from '@/utils/helper'
+const time = ref(getTime())
+const date = ref(getDate())
+const location = ref('南京市秦淮河河道提防管理处')
   /**
  * 图片路径转成canvas
  * @param {图片url} url
@@ -39,14 +46,21 @@ async function addIcon(canvas){
   ctx.textBaseline = "middle";
   var iconImage = new Image();
   var iconImage2 = new Image();
+  var lineImage = new Image();
+  var logoImage = new Image();
   iconImage.src = './watermask-location.png'
   iconImage2.src = './watermask-name.png'
+  lineImage.src = './line.png'
+  logoImage.src = './dingdinglogo.png'
   // iconImage.crossOrigin = 'Anonymous';
   await new Promise((resolve) => (iconImage.onload = resolve));
   await new Promise((resolve) => (iconImage2.onload = resolve));
-  ctx.drawImage(iconImage , 20, 50 ,14,14);
-  console.log(iconImage)
-  ctx.drawImage(iconImage2 , 20, 80 ,14,14);
+  await new Promise((resolve) => (lineImage.onload = resolve));
+  await new Promise((resolve) => (logoImage.onload = resolve));
+  ctx.drawImage(iconImage , 80, 180 );
+  ctx.drawImage(iconImage2 , 80, 280 );
+  ctx.drawImage(lineImage , 40, 60, 5, 260);
+  ctx.drawImage(logoImage , canvas.width - 250, 30);
   return canvas
 }
 
@@ -60,13 +74,13 @@ async function addWatermark(tempcanvas, {time,date,location,name}) {
   const ctx = canvas.getContext("2d");
   ctx.fillStyle = "#fff";
   ctx.textBaseline = "middle";
-  ctx.font = '24px PingFang SC Semibold';
+  ctx.font = '64px PingFang SC Semibold';
   
-  ctx.fillText(time, 20, 30 );
-  ctx.font = '13px PingFang SC Semibold';
-  ctx.fillText(date, 100, 30);
-  ctx.fillText(location, 40, 60);
-  ctx.fillText(name, 40, 90);
+  ctx.fillText(time, 80, 100 );
+  ctx.font = '32px PingFang SC Semibold';
+  ctx.fillText(date, 300, 100);
+  ctx.fillText(location, 120, 200);
+  ctx.fillText(name, 120, 300);
   // ctx.drawImage(logoImg, 0, 0);
   return canvas;
 }
@@ -87,10 +101,10 @@ function convasToImg(canvas) {
 }
 
 
-
+let imgUrl = "./login.png"
 // 运行示例
 async function run() {
-  const imgUrl ="./login.png";
+  document.querySelector('.watermask').innerHTML = ''
   // 1.图片路径转成canvas
   const tempCanvas = await imgToCanvas(imgUrl);
   // 2.canvas添加水印
@@ -99,7 +113,7 @@ async function run() {
       time: time.value,
       date: date.value,
       location: location.value,
-      name:'张三'
+      name:'陶源'
     },
   );
   // 3.canvas转成img
@@ -108,10 +122,11 @@ async function run() {
   document.querySelector('.watermask').appendChild(img);
 }
 
-const store = useStore();
+// const store = useStore();
 const imgChange = (e)=>{
   const file = e.target.files[0]
-  console.log(file)
+  const url = window.URL.createObjectURL(file)
+  imgUrl = url
   // store.dispatch('uploadAudioFile' ,file) 
   
 }
@@ -120,6 +135,8 @@ onMounted(()=>{
 })
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+  .water-mask-input{
+    margin-bottom: 10px;
+  }
 </style>

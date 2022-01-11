@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+01-serve/node_modules
+01-vue/node_modules
 
 
 # local env files

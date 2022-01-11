@@ -30,7 +30,7 @@ export default {
       const _y = img.height / side// 得到响应高度
       canvas.value.height = _y
       const image = new Image()
-      image.src = '/jie.png'
+      image.src = '/jianying.png'
       image.onload = ()=>{
         const x = 500
         const y = _y
@@ -38,7 +38,7 @@ export default {
         const imageData = ctx.getImageData(0,0,x,y).data;
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0,0,x,y);
-        const gap = 6;
+        const gap = 5;
         for (var h = 0; h < y; h+=gap) {
           for(var w = 0; w < x; w+=gap){
             const cb = ctx.getImageData(h, w, 1, 1).data

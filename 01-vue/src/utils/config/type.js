@@ -1,9 +1,10 @@
 const siderList = [
   {name: 'three', label: 'three'},
-  {name: 'theSpringFestival', label: 'theSpringFestival'},
+  {name: 'theSpringFestival', label: 'canvas画福'},
   {name: 'select', label: 'select选择器'},
   {name: 'yMind', label: 'yMind'},
   {name: 'watermask', label: '水印'},
+  {name: 'todolist', label: 'todolist'},
 ]
 
 const headList = [

@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var layoutRouter = require('./routes/layout');
 var articleRouter = require('./routes/article');
+var todolistRouter = require('./routes/todolist');
 var app = express();
 
 // view engine setup
@@ -34,7 +35,7 @@ app.use('/utils',express.static('utils'));
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 // app.use('/layout', layoutRouter);
-// app.use('/article', articleRouter);
+app.use('/api', todolistRouter);
 // ----------------新添加这三行  让页面自动访问index.html-----------
 // var history = require('connect-history-api-fallback');
 // app.use(express.static(path.join(__dirname, 'dist')));

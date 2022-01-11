@@ -6,12 +6,6 @@
         <router-link :to="{name: `${item.name}`}" :title="item.label">{{item.label}}</router-link>
       </li>
     </ul>
-
-    <ul>
-      <li>
-        <a href="#css">css相关</a>
-      </li>
-    </ul>
   </div>
 </template>
 

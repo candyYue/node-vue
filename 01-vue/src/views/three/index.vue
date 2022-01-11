@@ -6,13 +6,16 @@
 </template>
 
 <script setup>
-import { OrbitControls } from "three/examples/js/controls/OrbitControls";
+// import { OrbitControls } from "three/examples/js/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import '@/assets/js/OrbitControls'
 import { WebGLRenderer, Scene, PerspectiveCamera,Color,
   PointLight,
   AmbientLight,
   DirectionalLight,
-  HemisphereLight,} from 'three';
+  HemisphereLight,
+  OrbitControls
+} from 'three';
 import { onMounted, ref } from 'vue';
 const loader = new GLTFLoader(); //引入模型的loader实例
 

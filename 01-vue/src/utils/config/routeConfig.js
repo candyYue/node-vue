@@ -47,6 +47,13 @@ const routeConfig = {
     path: 'watermask',
     redirect: 'watermask',
     children: {}
+  },
+  todolist:{
+    title: 'todolist',
+    name: 'views-todolist',
+    path: 'todolist',
+    redirect: 'todolist',
+    children: {}
   }
 }
 
