@@ -1,19 +1,45 @@
 <template>
-  <header-bar></header-bar>
-  <sider-bar></sider-bar>
-  <div class="view-content">
+  <header-bar :minLayout='minLayout'></header-bar>
+  <sider-bar v-if="!minLayout"></sider-bar>
+  <div :class="['view-content',minLayout?'min-view-content':'']">
     <router-view></router-view>
   </div>
+
+  <footer-bar></footer-bar>
 </template>
 
 <script>
 import siderBar from './components/siderBar'
 import headerBar from './components/headerBar'
+import footerBar from './components/footerBar'
 export default {
   name: 'App',
   components: {
     siderBar,
-    headerBar
+    headerBar,
+    footerBar
+  },
+  data(){
+    return{
+      minLayout:true
+    }
+  },
+  methods:{
+    pageResize(){
+      const clientWidth = document.body.clientWidth
+      if (clientWidth > 680) {
+        this.minLayout= true
+      }else{
+        this.minLayout= true
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', this.pageResize)
+  },
+  unmounted(){
+    // window.onresize = null;
+    window.removeEventListener('resize', this.pageResize)
   }
 }
 </script>

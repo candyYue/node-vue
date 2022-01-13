@@ -23,18 +23,44 @@ $footer-height: 50px;
   line-height: $header-height;
   position: fixed;
   width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid $sidebar-color;
+  background-color: #303030;
+  &-menu{
+    width: 120px;
+    background-color: #303030;
+    z-index: 9;
+    text-align: center;
+    border-radius: 0 0 4px 4px;
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    li+li{
+      border-top: 1px solid #fff;
+    }
+  }
+}
+.footer-bar{
+  height: $footer-height;
+  line-height: $footer-height;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  background-color: #303030;
 }
 .view-content{
   margin-top: $header-height + $gap;
   margin-left: $sidebar-width + $gap;
-  height: calc(100% - $header-height  - $gap);
+  height: calc(100% - $header-height  - $gap - $footer-height);
   width: calc(100% - $sidebar-width - $gap);
   flex: 1;
   padding: 20px;
   overflow-y: auto;
   background-color: #fff;
+  &.min-view-content{
+    margin-left: 0;
+    width:100%
+  }
  .main {
   display: flex;
   height: calc(100vh - 54px);

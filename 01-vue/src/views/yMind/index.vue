@@ -1,9 +1,9 @@
 <template>
-  <div>link
-   {{links}}
-    <svg width="1000" height="700" ref="svg">
-      <g transform="translate(60,60)">
-        <Link :links='links'></Link>
+  <div style="width:100%;height:100%">
+    <svg width="100%" height="100%" ref="svg">
+      <g transform="translate(60,400)" class="y-mind-link-content">
+      </g>
+      <g transform="translate(60,400)" class="y-mind-node-content">
       </g>
     </svg>
   </div>
@@ -11,9 +11,13 @@
 
 <script setup>
 import { onMounted, reactive, ref } from '@vue/runtime-core';
+import { createApp } from 'vue'
+import { VueElement } from '@vue/runtime-dom';
 import * as d3 from 'd3'
 import { drawLink, drawNode } from './handle/action'
-import Link from './link.vue'
+
+import Node from './Node.vue'
+import Link from './Link.vue'
 
 //数据
 var data = {
@@ -65,12 +69,20 @@ var data = {
       }
     ]
 };
-
+var links
+var nodes
+function toggle(d){  
+  console.log(d)
+  if(d.children){  //如果有子节点
+    d._children = d.children; //将该子节点保存到 _children  
+    d.children = null;  //将子节点设置为null  
+  }else{  //如果没有子节点  
+    d.children = d._children; //从 _children 取回原来的子节点   
+    d._children = null; //将 _children 设置为 null  
+  }
+  console.log(links)
+}
 var margin = 60;
-
-var links = reactive([])
-var nodes = reactive([])
-
 const init = ()=>{
   var svg = d3.select("svg");
   var width = svg.attr("width");
@@ -98,19 +110,25 @@ const init = ()=>{
     .size([width-400,height-200])
     .separation(function (a,b) {
         return (a.parent==b.parent?1:2)/a.depth;//一种更适合于径向布局的变体，可以按比例缩小半径差距:
-    });
+    })
+    .nodeSize([70,100]) ;
 
   //初始化树状图数据
   var treeData = tree(hierarchyData)
   // console.log(treeData);//这里的数据treeData与hierarchyData 相同
-
-  //获取边和节点
-  // nodes = treeData.descendants()
-  links.value = treeData.links()
-  // console.log(nodes);
-  console.log(links);
+  //生成svg边和节点
+  nodes = treeData.descendants()
+  links = treeData.links()
+  const linkComp = createApp(Link,{ links })
+  const linkInstance = linkComp.mount(document.querySelector('.y-mind-link-content'))
+  const nodeComp = createApp(Node,{ 
+    nodes,
+    toggle
+  })
+  const nodeInstance = nodeComp.mount(document.querySelector('.y-mind-node-content'))
   // drawLink(g,links)
   // drawNode(g,nodes)
+  console.log(links)
 }
 onMounted(()=>{
   init()

@@ -21,7 +21,7 @@ import {useStore} from 'vuex';
 import { getTime, getDate} from '@/utils/helper'
 const time = ref(getTime())
 const date = ref(getDate())
-const location = ref('南京市秦淮河河道提防管理处')
+const location = ref('')
   /**
  * 图片路径转成canvas
  * @param {图片url} url
@@ -57,9 +57,9 @@ async function addIcon(canvas){
   await new Promise((resolve) => (iconImage2.onload = resolve));
   await new Promise((resolve) => (lineImage.onload = resolve));
   await new Promise((resolve) => (logoImage.onload = resolve));
-  ctx.drawImage(iconImage , 80, 180 );
-  ctx.drawImage(iconImage2 , 80, 280 );
-  ctx.drawImage(lineImage , 40, 60, 5, 260);
+  ctx.drawImage(iconImage , 80, 160 );
+  ctx.drawImage(iconImage2 , 80, 240 );
+  ctx.drawImage(lineImage , 40, 60, 5, 220);
   ctx.drawImage(logoImage , canvas.width - 250, 30);
   return canvas
 }
@@ -79,8 +79,8 @@ async function addWatermark(tempcanvas, {time,date,location,name}) {
   ctx.fillText(time, 80, 100 );
   ctx.font = '32px PingFang SC Semibold';
   ctx.fillText(date, 300, 100);
-  ctx.fillText(location, 120, 200);
-  ctx.fillText(name, 120, 300);
+  ctx.fillText(location, 120, 180);
+  ctx.fillText(name, 120, 260);
   // ctx.drawImage(logoImg, 0, 0);
   return canvas;
 }

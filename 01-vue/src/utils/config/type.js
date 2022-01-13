@@ -5,6 +5,7 @@ const siderList = [
   {name: 'yMind', label: 'yMind'},
   {name: 'watermask', label: '水印'},
   {name: 'todolist', label: 'todolist'},
+  {name: 'audioPlay', label: '音频控制'},
 ]
 
 const headList = [

@@ -54,6 +54,13 @@ const routeConfig = {
     path: 'todolist',
     redirect: 'todolist',
     children: {}
+  },
+  audioPlay:{
+    title: 'audioPlay',
+    name: 'views-audioPlay',
+    path: 'audioPlay',
+    redirect: 'audioPlay',
+    children: {}
   }
 }
 

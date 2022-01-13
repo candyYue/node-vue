@@ -193,6 +193,16 @@ const vuelist = [
         ],
         img: '',
       },
+      {
+        title: 'vue3 VS vue2 实例挂载',
+        des:'',
+        link: '',
+        content:[
+          'VUE2:  1. const instance = new Vue( 组件 ) 2.instance.$mount() 3.parent.appendChild(instance.$el)',
+          'VUE3:  1. const instance = createApp( 组件 ) 2.instance.$mount(parent) 3.console.log(instance.$el)'
+        ],
+        img: '',
+      },
     ]
   }
 ]

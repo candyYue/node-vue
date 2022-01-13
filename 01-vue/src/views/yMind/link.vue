@@ -1,16 +1,19 @@
 <template>
-{{props.nodes}}
   <g>
-    <path 
-    d="M0,300C83.33333333333333,300,83.33333333333333,100,166.66666666666666,100"
+    <path v-for="(item,index) in props.links" :key="index"
+    :d="`M${item.source.y+10},${item.source.x} C${1/2*(item.target.y + item.source.y)},${item.source.x},${1/2*(item.target.y + item.source.y)},${item.target.x},${item.target.y-10},${item.target.x}`"
     stroke="pink" stroke-width='1' fill='none'>
-    
     </path>
   </g>
 </template>
-
 <script setup>
 import { onMounted ,defineProps} from 'vue';
+//  <path :d="`M${item.source.y},${item.source.x} L${item.target.y},${item.target.x}`" stroke="pink" stroke-width='1' fill='none' v-for="(item,index) in props.links" :key="index">
+//  </path>
+// <path v-for="(item,index) in props.links" :key="index"
+//     :d="`M${item.source.y+10},${item.source.x} C${1/2*(item.target.y + item.source.y)},${item.source.x},${1/2*(item.target.y + item.source.y)},${item.target.x},${item.target.y-10},${item.target.x}`"
+//     stroke="pink" stroke-width='1' fill='none'>
+//     </path>
 import * as d3 from 'd3'
 import { drawLink, drawNode } from './handle/action'
 const props = defineProps({
@@ -19,7 +22,7 @@ const props = defineProps({
     default: () => []
   },
 })
-console.log(props)
+
 onMounted(()=>{
   
 })
