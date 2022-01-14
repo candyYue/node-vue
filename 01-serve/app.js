@@ -32,14 +32,14 @@ app.use('/utils',express.static('utils'));
 
 
 // ----------------这几行被我注释掉了-----------
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 // app.use('/layout', layoutRouter);
-app.use('/api', todolistRouter);
+// app.use('/api', todolistRouter);
 // ----------------新添加这三行  让页面自动访问index.html-----------
-// var history = require('connect-history-api-fallback');
-// app.use(express.static(path.join(__dirname, 'dist')));
-// app.use(history());
+var history = require('connect-history-api-fallback');
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use(history());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -3,11 +3,13 @@
     <h3>
       <span v-if="props.minLayout" @click.stop="toogleMenu"> XY </span>
       
-      <ul v-if="showMenu" class="header-bar-menu" @click.stop ref="menu">
-        <li v-for="(item,index) in siderList" :key="index" :title="item.label" @click="changePage(item)">
-          {{item.label}}
-        </li>
-      </ul>
+      <transition name="slide-fade">
+        <ul v-if="showMenu" class="header-bar-menu" @click.stop ref="menu">
+          <li v-for="(item,index) in siderList" :key="index" :title="item.label" @click="changePage(item)">
+            {{item.label}}
+          </li>
+        </ul>
+      </transition>
     </h3>
     <p v-for="(item,index) in headList" :key="index" class="head-item">
       <router-link :to="{name: `${item.name}`}">{{item.label}}</router-link>
@@ -63,6 +65,7 @@ onMounted(()=>{
       width: 50px;
       height: 100%;
       text-align: center;
+      animation:  beating 2s linear infinite;
     }
   }
   .head-item{

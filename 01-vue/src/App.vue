@@ -1,6 +1,7 @@
 <template>
   <header-bar :minLayout='minLayout'></header-bar>
   <sider-bar v-if="!minLayout"></sider-bar>
+
   <div :class="['view-content',minLayout?'min-view-content':'']">
     <router-view></router-view>
   </div>
@@ -12,6 +13,7 @@
 import siderBar from './components/siderBar'
 import headerBar from './components/headerBar'
 import footerBar from './components/footerBar'
+import bannerPage from './components/bannerPage'
 export default {
   name: 'App',
   components: {

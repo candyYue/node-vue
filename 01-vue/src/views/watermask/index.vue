@@ -22,6 +22,8 @@ import { getTime, getDate} from '@/utils/helper'
 const time = ref(getTime())
 const date = ref(getDate())
 const location = ref('')
+
+const baseWidth = 1080
   /**
  * 图片路径转成canvas
  * @param {图片url} url
@@ -42,25 +44,26 @@ async function imgToCanvas(url) {
 }
 
 async function addIcon(canvas){
+  const basePx = baseWidth/canvas.width
   const ctx = canvas.getContext("2d");
   ctx.textBaseline = "middle";
   var iconImage = new Image();
   var iconImage2 = new Image();
   var lineImage = new Image();
   var logoImage = new Image();
-  iconImage.src = './watermask-location.png'
-  iconImage2.src = './watermask-name.png'
-  lineImage.src = './line.png'
-  logoImage.src = './dingdinglogo.png'
+  iconImage.src = './img/watermask-location.png'
+  iconImage2.src = './img/watermask-name.png'
+  lineImage.src = './img/line.png'
+  logoImage.src = './img/dingdinglogo.png'
   // iconImage.crossOrigin = 'Anonymous';
   await new Promise((resolve) => (iconImage.onload = resolve));
   await new Promise((resolve) => (iconImage2.onload = resolve));
   await new Promise((resolve) => (lineImage.onload = resolve));
   await new Promise((resolve) => (logoImage.onload = resolve));
-  ctx.drawImage(iconImage , 80, 160 );
-  ctx.drawImage(iconImage2 , 80, 240 );
-  ctx.drawImage(lineImage , 40, 60, 5, 220);
-  ctx.drawImage(logoImage , canvas.width - 250, 30);
+  ctx.drawImage(iconImage , 80/basePx, 160/basePx , 32/basePx, 32/basePx);
+  ctx.drawImage(iconImage2 , 80/basePx, 240/basePx, 32/basePx, 32/basePx);
+  ctx.drawImage(lineImage , 40/basePx, 60/basePx, 5/basePx, 220/basePx);
+  ctx.drawImage(logoImage , (canvas.width - 250/basePx), 30/basePx, 223/basePx, 109/basePx);
   return canvas
 }
 
@@ -71,16 +74,17 @@ async function addIcon(canvas){
  */
 async function addWatermark(tempcanvas, {time,date,location,name}) {
   const canvas = await addIcon(tempcanvas)
+  const basePx = baseWidth/canvas.width
   const ctx = canvas.getContext("2d");
   ctx.fillStyle = "#fff";
   ctx.textBaseline = "middle";
-  ctx.font = '64px PingFang SC Semibold';
+  ctx.font = `${64/basePx}px PingFang SC Semibold`;
   
-  ctx.fillText(time, 80, 100 );
-  ctx.font = '32px PingFang SC Semibold';
-  ctx.fillText(date, 300, 100);
-  ctx.fillText(location, 120, 180);
-  ctx.fillText(name, 120, 260);
+  ctx.fillText(time, 80/basePx, 100/basePx );
+  ctx.font = `${32/basePx}px PingFang SC Semibold`;
+  ctx.fillText(date, 300/basePx, 100/basePx);
+  ctx.fillText(location, 120/basePx, 180/basePx);
+  ctx.fillText(name, 120/basePx, 260/basePx);
   // ctx.drawImage(logoImg, 0, 0);
   return canvas;
 }
@@ -101,7 +105,7 @@ function convasToImg(canvas) {
 }
 
 
-let imgUrl = "./login.png"
+let imgUrl = ""
 // 运行示例
 async function run() {
   document.querySelector('.watermask').innerHTML = ''

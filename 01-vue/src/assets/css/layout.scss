@@ -41,17 +41,21 @@ $footer-height: 50px;
 .footer-bar{
   height: $footer-height;
   line-height: $footer-height;
-  position: fixed;
   width: 100%;
-  bottom: 0;
   color: #fff;
   text-align: center;
   background-color: #303030;
 }
+.banner-page{
+  width: 100%; 
+  height:500px;
+  background: #000622;
+  min-height: calc(100% - $header-height);
+  margin-top: $header-height;
+}
 .view-content{
-  margin-top: $header-height + $gap;
   margin-left: $sidebar-width + $gap;
-  height: calc(100% - $header-height  - $gap - $footer-height);
+  min-height: calc(100% - $header-height  - $footer-height);
   width: calc(100% - $sidebar-width - $gap);
   flex: 1;
   padding: 20px;

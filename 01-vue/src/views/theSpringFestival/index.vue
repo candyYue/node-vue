@@ -30,7 +30,7 @@ export default {
       const _y = img.height / side// 得到响应高度
       canvas.value.height = _y
       const image = new Image()
-      image.src = '/jianying.png'
+      image.src = '/img/jianying.png'
       image.onload = ()=>{
         const x = 500
         const y = _y
@@ -49,7 +49,7 @@ export default {
                 // ctx.fillRect(w,h,4,4);
                 var dragonScale = 2;
                 var bubble = document.createElement("img");
-                bubble.src = "./denglong.png";
+                bubble.src = "./img/denglong.png";
                 bubble.setAttribute("class","bubble");
 
                 var bubbleSize = Math.random()*10+5;
