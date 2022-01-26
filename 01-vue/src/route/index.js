@@ -7,7 +7,7 @@ import routeConfig from "@/utils/config/routeConfig";
 
 
 // const homePage = r => require.ensure([], () => r(require('../views/homePage.vue')), 'homePage')
-// const homePage = () => import("@/views/homePage")
+const homePage = () => import("@/views/homePage")
 // const three = () => import("@/views/three")
 // const theSpringFestival = () => import("@/views/theSpringFestival")
 // const tecdoc = () => import("@/views/tecdoc")
@@ -38,7 +38,14 @@ const router = createRouter({
   // mode: 'history',
   history:createWebHistory(),
   linkActiveClass: 'active',
-  routes: getRoute(routeConfig)
+  routes: [{
+    path: '/:pathMatch(.*)',
+    redirect: () => {
+      return {
+        name: 'homePage'
+      }
+    }
+  },...getRoute(routeConfig)]
 })
 
 router.beforeEach(async (to, from, next) => {

@@ -54,6 +54,7 @@ $footer-height: 50px;
   margin-top: $header-height;
 }
 .view-content{
+  margin-top: $header-height;
   margin-left: $sidebar-width + $gap;
   min-height: calc(100% - $header-height  - $footer-height);
   width: calc(100% - $sidebar-width - $gap);

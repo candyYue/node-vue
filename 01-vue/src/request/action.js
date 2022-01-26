@@ -18,6 +18,9 @@ const modifyTodolist = (data) => {
 const deleteTodolist = (data) => {
   return request(api.deleteTodolist, data)
 }
+const getChinaDis = (data) => {
+  return request(api.getChinaDis, data)
+}
 
 export {
   uploadAudioFile,
@@ -25,5 +28,6 @@ export {
   getTodolist,
   addTodolist,
   modifyTodolist,
-  deleteTodolist
+  deleteTodolist,
+  getChinaDis
 }

@@ -13,7 +13,7 @@
 import siderBar from './components/siderBar'
 import headerBar from './components/headerBar'
 import footerBar from './components/footerBar'
-import bannerPage from './components/bannerPage'
+
 export default {
   name: 'App',
   components: {

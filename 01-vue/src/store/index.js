@@ -1,6 +1,8 @@
 import 'babel-polyfill' //转换es6+语法
 import { createStore } from 'vuex'
 import * as actionFn from '../request/action'
+
+import modules from './modules'
 // import Vue from 'vue'
 // import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate'
@@ -9,10 +11,8 @@ import * as actionFn from '../request/action'
 // } from './actions'
 
 // Vue.use(Vuex)
-
 export default createStore({
-  modules: {
-  },
+  modules,
   state: {
     number: 1
   },
@@ -33,7 +33,7 @@ export default createStore({
     },
     uploadAudioFile : (context, payload) => (
       actionFn.uploadAudioFile(payload)
-    )
+    ),
   },
   // plugins: [createPersistedState({
   //   storage: window.sessionStorage,

@@ -61,6 +61,13 @@ const routeConfig = {
     path: 'audioPlay',
     redirect: 'audioPlay',
     children: {}
+  },
+  disease:{
+    title: 'disease',
+    name: 'views-disease',
+    path: 'disease',
+    redirect: 'disease',
+    children: {}
   }
 }
 

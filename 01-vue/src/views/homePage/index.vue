@@ -7,8 +7,11 @@
 <script>
 import {useStore} from 'vuex';
 import { ref, computed, onMounted } from 'vue'
+import bannerPage from '@/components/bannerPage'
 export default {
   name: 'homePage',
+  components:{
+  },
   setup() {//两个参数props, context
     // context包含三个属性：context.attrs,context.slots,context.emit
     const store = useStore();
